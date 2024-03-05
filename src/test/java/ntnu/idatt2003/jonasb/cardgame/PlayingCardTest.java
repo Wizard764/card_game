@@ -3,6 +3,7 @@ package ntnu.idatt2003.jonasb.cardgame;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Unit test for PlayingCard.
@@ -39,8 +40,9 @@ public class PlayingCardTest {
   public void testCreateCardInvalidSuit() {
     try {
       new PlayingCard('X', 1);
+      fail("IllegalArgumentException expected");
     } catch (IllegalArgumentException e) {
-      assertEquals("Parameter suit must be one of H, D, C or S", e.getMessage());
+      // Expected
     }
   }
 
@@ -48,8 +50,9 @@ public class PlayingCardTest {
   public void testCreateCardInvalidFace() {
     try {
       new PlayingCard('H', 0);
+      fail("IllegalArgumentException expected");
     } catch (IllegalArgumentException e) {
-      assertEquals("Parameter face must be a number between 1 to 13", e.getMessage());
+      // Expected
     }
   }
 }
