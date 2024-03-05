@@ -1,5 +1,7 @@
 package ntnu.idatt2003.jonasb.cardgame;
 
+import java.util.stream.IntStream;
+
 /**
  * Represents a playing card. A playing card has a number (face) between
  * 1 and 13, where 1 is called an Ace, 11 = Knight, 12 = Queen and 13 = King.
@@ -12,6 +14,7 @@ public class PlayingCard {
 
   private final char suit; // 'S'=spade, 'H'=heart, 'D'=diamonds, 'C'=clubs
   private final int face; // a number between 1 and 13
+  public static final char[] suits = {'H', 'D', 'C', 'S'};
 
   /**
    * Creates an instance of a PlayingCard with a given suit and face.
@@ -27,8 +30,11 @@ public class PlayingCard {
    * @throws IllegalArgumentException if suit or face have invalid values.
    */
   public PlayingCard(char suit, int face) {
-    if (suit != 'H' && suit != 'D' && suit != 'C' && suit != 'S') {
-      throw new IllegalArgumentException("Parameter suit must be one of H, D, C or S");
+    // Use streams to check if the suit is valid
+    boolean validSuit = IntStream.range(0, suits.length)
+        .anyMatch(i -> suits[i] == suit);
+    if (!validSuit) {
+      throw new IllegalArgumentException("Parameter suit must be one of H, D, C, or S");
     }
 
     if (face < 1 || face > 13) {
