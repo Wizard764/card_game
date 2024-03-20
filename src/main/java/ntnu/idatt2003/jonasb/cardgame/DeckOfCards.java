@@ -11,7 +11,7 @@ public class DeckOfCards {
   /**
    * The deck of cards.
    */
-  private ArrayList<PlayingCard> deck;
+  private final ArrayList<PlayingCard> deck;
 
   /**
    * Creates a new deck of cards.
